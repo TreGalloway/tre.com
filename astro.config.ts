@@ -18,8 +18,11 @@ import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 
 import tailwindcss from '@tailwindcss/vite'
 
+import node from '@astrojs/node';
+
 export default defineConfig({
   site: 'https://astro-erudite.vercel.app',
+
   integrations: [
     expressiveCode({
       themes: ['github-light', 'github-dark'],
@@ -69,16 +72,20 @@ export default defineConfig({
     sitemap(),
     icon(),
   ],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   server: {
     port: 1234,
     host: true,
   },
+
   devToolbar: {
     enabled: false,
   },
+
   markdown: {
     syntaxHighlight: false,
     rehypePlugins: [
@@ -103,4 +110,8 @@ export default defineConfig({
     ],
     remarkPlugins: [remarkMath, remarkEmoji],
   },
+
+  adapter: node({
+    mode: 'standalone',
+  }),
 })
