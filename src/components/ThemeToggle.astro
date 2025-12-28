@@ -19,10 +19,10 @@ import { Icon } from 'astro-icon/components'
   (() => {
     const theme = (() => {
       const stored = localStorage?.getItem('theme') ?? ''
-      if (['dark', 'light'].includes(stored)) return stored
+      if (['serendipity-midnight', 'serendipity-morning'].includes(stored)) return stored
       return window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
+        ? 'serendipity-midnight'
+        : 'serendipity-morning'
     })()
 
     document.documentElement.setAttribute('data-theme', theme)
@@ -34,7 +34,7 @@ import { Icon } from 'astro-icon/components'
   function handleToggleClick() {
     const element = document.documentElement
     const currentTheme = element.getAttribute('data-theme')
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+    const newTheme = currentTheme === 'serendipity-midnight' ? 'serendipity-morning' : 'serendipity-midnight'
 
     element.classList.add('[&_*]:transition-none')
     element.setAttribute('data-theme', newTheme)
@@ -56,7 +56,7 @@ import { Icon } from 'astro-icon/components'
   initThemeToggle()
 
   document.addEventListener('astro:after-swap', () => {
-    const storedTheme = localStorage.getItem('theme') || 'light'
+    const storedTheme = localStorage.getItem('theme') || 'serendipity-morning'
     const element = document.documentElement
 
     element.classList.add('[&_*]:transition-none')
